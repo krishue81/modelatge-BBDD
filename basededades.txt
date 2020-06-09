@@ -1,0 +1,7 @@
+select count(*) from usairlineflights2.flights;
+select Origin, avg(ArrDelay) as averageArrivals, avg(DepDelay) as averageDepartures from usairlineflights2.flights group by Origin;
+select Origin, colYear, colMonth, AVG (ArrDelay) as AverageArrival from usairlineflights2.flights group by FlightID order by Origin, colYear, colMonth;
+select City, colYear, colMonth, AVG (ArrDelay) as AverageArrival from usairlineflights2.flights join usairlineflights2.usairports on flights.Origin = usairports.IATA group by FlightID order by City, colYear, colMonth;
+select distinct UniqueCarrier, colYear, colMonth, SUM(Cancelled) as totalCancelled from flights group by colYear, colmonth, UniqueCarrier order by sum(Cancelled) DESC, colYear, colMonth;
+select TailNum, sum(distance) as totalDistance from usairlineflights2.flights where TailNum != "" group by TailNum order by totalDistance DESC LIMIT 10;
+select UniqueCarrier, avg(ArrDelay) as avgDelay from flights group by UniqueCarrier having avgDelay > 10 order by avgDelay DESC;
